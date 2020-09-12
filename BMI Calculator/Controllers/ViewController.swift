@@ -9,7 +9,25 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var heightSlider: UISlider!
+    
+    
+    @IBOutlet weak var weightSlider: UISlider!
+    
+    
+    @IBOutlet weak var heightLabel: UILabel!
+    
+    
+    @IBOutlet weak var weightLabel: UILabel!
+    
+    
+    @IBAction func heightSliderChanged(_ sender: Any) {
+        
+        let formattedHeightValue = String(format: "%.2f",heightSlider.value )
+        heightLabel.text = String(formattedHeightValue)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
