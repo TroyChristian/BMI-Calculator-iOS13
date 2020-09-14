@@ -12,6 +12,8 @@ import Darwin
 class ViewController: UIViewController {
     
    //MARK: Variables, Constants, Instances
+    var outputBMI:String?
+    var calculatorBrain = CalculatorBrain() 
     
     
     
@@ -47,19 +49,11 @@ class ViewController: UIViewController {
         // BMI in (kg/m2) = mass in kilograms divided by the square height in meters
         //bmi = weight(kg) / height(m)2
         
-        let formattedWeightValue = String(format: "%.0f",weightSlider.value)
-        let kilograms = Int(formattedWeightValue)
+        self.calculatorBrain.calculateBMI(weightSlider.value, heightSlider.value)
         
-        
-        let formattedHeightValue = String(format: "%.2f",heightSlider.value )
-        let formattedHeightValueToDouble = Double(formattedHeightValue)
-        
-        let squaredMetricHeight = pow(formattedHeightValueToDouble!, 2)
-        
-        let metricBMI = Double(kilograms!) / squaredMetricHeight
-        
-        let formattedBMI = String(format: "%.1f", metricBMI)
-        NSLog("MetricBMI Formatted: \(formattedBMI)")
+        //self.outputBMI = self.calculatorBrain.bmiResult!
+       
+        self.performSegue(withIdentifier: "showResultSegue", sender: self)
         
         
         
@@ -79,5 +73,20 @@ class ViewController: UIViewController {
     }
 
 
-}
+    
+    
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showResultSegue" {
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.bmiResult = self.calculatorBrain.bmiResult
+        }
+    }
+
+
+        
+    }
+    
+
+
 
