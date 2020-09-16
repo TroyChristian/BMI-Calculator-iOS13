@@ -45,24 +45,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func calculateButtonTapped(_ sender: UIButton) {
-        //Metric forumula
-        // BMI in (kg/m2) = mass in kilograms divided by the square height in meters
-        //bmi = weight(kg) / height(m)2
+
         
         self.calculatorBrain.calculateBMI(weightSlider.value, heightSlider.value)
         
-        //self.outputBMI = self.calculatorBrain.bmiResult!
        
         self.performSegue(withIdentifier: "showResultSegue", sender: self)
         
-        
-        
-        // Imperial Formula
-        //divide lbs by height
-        //divide the result by height again
-        //multiply this result by 703
-        
-        // product == bmi
     }
     
     
@@ -79,7 +68,10 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showResultSegue" {
             let destinationVC = segue.destination as! ResultViewController
-            destinationVC.bmiResult = self.calculatorBrain.bmiResult
+            destinationVC.bmiResult = self.calculatorBrain.getBMIValue()
+            destinationVC.category = self.calculatorBrain.getBMIRangeAndSetBMICategory()
+            destinationVC.colorBool = self.calculatorBrain.getBMIColor()
+            
         }
     }
 

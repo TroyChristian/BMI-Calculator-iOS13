@@ -25,6 +25,8 @@ class ResultViewController: UIViewController {
     
     //MARK: -Variables
     var bmiResult:String?
+    var category:String?
+    var colorBool:Bool?
     
     
     
@@ -34,19 +36,15 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         resultOutputLabel.text? = bmiResult!
-
-        // Do any additional setup after loading the view.
-    }
+        adviceLabel.text? = category!
+        if colorBool! { // if bmiResult is healthy in calc brain, this will be true, and will set the bg color to green.
+            self.view.backgroundColor = UIColor.green
+        } else {
+            self.view.backgroundColor = UIColor.red
+        }
     
 
-    /*
-    // MARK: - Navigation
+ 
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+}
 }
